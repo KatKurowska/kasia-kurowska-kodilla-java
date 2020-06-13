@@ -1,29 +1,27 @@
 package com.kodilla.testing;
 
-import com.kodilla.testing.SimpleUser;
+import com.kodilla.testing.calculator.Calculator;
 
 public class TestingMain {
+
     public static void main(String[] args) {
-        SimpleUser simpleUser = new SimpleUser("theForumUser");
 
-        String result = simpleUser.getUserName();
+        Calculator calculator = new Calculator();
 
-        if (result.equals("theForumUser")) {
-            System.out.println("test OK");
+        int addingResult = calculator.add(42, 191);
+
+        if (addingResult == 233) {
+            System.out.println("Adding test OK");
         } else {
             System.out.println("Error!");
         }
 
-        SimpleUser simpleUser2 = new SimpleUser("theForumUser2");
+        int subtractionResult = calculator.subtract(155, 4);
 
-        String result2 = simpleUser2.getUserName();
-
-        if (result2.equals("theForumUser2")) {
-            System.out.println("test OK");
+        if (subtractionResult == 151) {
+            System.out.println("Subtraction test OK");
         } else {
             System.out.println("Error!");
         }
-
-        System.out.println("Pierwsze dwa testy jednostkowe.");
     }
 }
