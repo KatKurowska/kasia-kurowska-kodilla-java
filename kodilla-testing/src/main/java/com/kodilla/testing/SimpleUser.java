@@ -7,7 +7,7 @@ public class SimpleUser {
         this.userName = userName;
     }
 
-    public String getUserName(){
+    public String getUsername() {
         return userName;
     }
 }
