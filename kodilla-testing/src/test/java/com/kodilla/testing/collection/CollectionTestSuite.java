@@ -38,7 +38,7 @@ public class CollectionTestSuite {
         System.out.println("Test succeds if the list is empty.");
 
         //Then
-        Assert.assertTrue(numbers1.isEmpty());
+        Assert.assertTrue(result.isEmpty());
 
     }
 
