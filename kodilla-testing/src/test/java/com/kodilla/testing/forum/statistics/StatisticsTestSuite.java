@@ -40,10 +40,7 @@ public class StatisticsTestSuite {
         List<String> usersNames = new ArrayList<>();
         when(statisticsMock.postsCount()).thenReturn(0);
         when(statisticsMock.commentsCount()).thenReturn(60);
-        when(statisticsMock.usersNames()).thenReturn(usersNames);
-        for (int n = 0; n < 15; n++) {
-            usersNames.add("User_Name");
-        }
+        when(statisticsMock.usersNames()).thenReturn(generateSampleUsers(15));
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
         //Then
         Assert.assertEquals(statisticsCalculator.getAveragePostsPerUser(), 0, 0);
@@ -58,10 +55,7 @@ public class StatisticsTestSuite {
         List<String> usersNames = new ArrayList<>();
         when(statisticsMock.postsCount()).thenReturn(1000);
         when(statisticsMock.commentsCount()).thenReturn(8000);
-        when(statisticsMock.usersNames()).thenReturn(usersNames);
-        for (int n = 0; n < 20; n++) {
-            usersNames.add("User_Name");
-        }
+        when(statisticsMock.usersNames()).thenReturn(generateSampleUsers(20));
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
         //Then
         Assert.assertEquals(statisticsCalculator.getAveragePostsPerUser(), 50.0, 0);
@@ -76,10 +70,7 @@ public class StatisticsTestSuite {
         List<String> usersNames = new ArrayList<>();
         when(statisticsMock.postsCount()).thenReturn(49);
         when(statisticsMock.commentsCount()).thenReturn(0);
-        when(statisticsMock.usersNames()).thenReturn(usersNames);
-        for (int n = 0; n < 7; n++) {
-            usersNames.add("User_Name");
-        }
+        when(statisticsMock.usersNames()).thenReturn(generateSampleUsers(7));
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
         //Then
         Assert.assertEquals(statisticsCalculator.getAveragePostsPerUser(), 7.0, 0);
@@ -94,10 +85,7 @@ public class StatisticsTestSuite {
         List<String> usersNames = new ArrayList<>();
         when(statisticsMock.postsCount()).thenReturn(100);
         when(statisticsMock.commentsCount()).thenReturn(20);
-        when(statisticsMock.usersNames()).thenReturn(usersNames);
-        for (int n = 0; n < 10; n++) {
-            usersNames.add("User_Name");
-        }
+        when(statisticsMock.usersNames()).thenReturn(generateSampleUsers(10));
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
         //Then
         Assert.assertEquals(statisticsCalculator.getAveragePostsPerUser(), 10.0, 0);
@@ -112,10 +100,7 @@ public class StatisticsTestSuite {
         List<String> usersNames = new ArrayList<>();
         when(statisticsMock.postsCount()).thenReturn(120);
         when(statisticsMock.commentsCount()).thenReturn(1200);
-        when(statisticsMock.usersNames()).thenReturn(usersNames);
-        for (int n = 0; n < 200; n++) {
-            usersNames.add("User_Name");
-        }
+        when(statisticsMock.usersNames()).thenReturn(generateSampleUsers(200));
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
         //Then
         Assert.assertEquals(statisticsCalculator.getAveragePostsPerUser(), 0.6, 0);
@@ -145,15 +130,21 @@ public class StatisticsTestSuite {
         List<String> usersNames = new ArrayList<>();
         when(statisticsMock.postsCount()).thenReturn(25);
         when(statisticsMock.commentsCount()).thenReturn(700);
-        when(statisticsMock.usersNames()).thenReturn(usersNames);
-        for (int n = 0; n < 100; n++) {
-            usersNames.add("User_Name");
-        }
+        when(statisticsMock.usersNames()).thenReturn(generateSampleUsers(100));
         statisticsCalculator.calculateAdvStatistics(statisticsMock);
         //Then
         Assert.assertEquals(statisticsCalculator.getAveragePostsPerUser(), 0.25, 0);
         Assert.assertEquals(statisticsCalculator.getAverageCommentsPerUser(), 7.0, 0);
         Assert.assertEquals(statisticsCalculator.getAverageCommentsPerPost(), 28.0, 0);
+    }
+
+    private List<String> generateSampleUsers(int count) {
+        List<String> usersNames = new ArrayList<>();
+        for (int n = 0; n < count; n++) {
+            usersNames.add("User_Name");
+        }
+        return usersNames;
+
     }
 }
 
