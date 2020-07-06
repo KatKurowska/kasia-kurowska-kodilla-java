@@ -13,6 +13,7 @@ import com.kodilla.stream.reference.FunctionalCalculator;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StreamMain {
@@ -67,11 +68,12 @@ public class StreamMain {
         System.out.println(theResultStringOfBooks);
 
         Forum forum = new Forum();
-        Map map = forum.getUsersList().stream()
-                .filter(forumUser -> forumUser.getGender() == 'M')
-                .filter(forumUser -> forumUser.getDateOfBirth().until(LocalDate.now(), ChronoUnit.YEARS) >= 20)
-                .filter(forumUser -> forumUser.getNumberOfPosts() >= 1)
-                .collect(Collectors.toMap(ForumUser::getUserId, ForumUser::getUserName));
+        Map<Integer, ForumUser> map =
+                forum.getUsersList().stream()
+                        .filter(forumUser -> forumUser.getGender() == 'M')
+                        .filter(forumUser -> forumUser.getDateOfBirth().until(LocalDate.now(), ChronoUnit.YEARS) >= 20)
+                        .filter(forumUser -> forumUser.getNumberOfPosts() >= 1)
+                        .collect(Collectors.toMap(ForumUser::getUserId, Function.identity()));
         map.entrySet().forEach(System.out::println);
     }
 }
