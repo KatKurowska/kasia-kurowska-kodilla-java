@@ -12,7 +12,7 @@ public class Continent {
         return (listOfCountries);
     }
 
-    public void setContinents(List<Country> countries) {
+    public void setCountries(List<Country> countries) {
         this.listOfCountries = countries;
     }
 }

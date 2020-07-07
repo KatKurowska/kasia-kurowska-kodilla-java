@@ -43,7 +43,7 @@ public class WorldTestSuite {
         americanCountries.add(chile);
         americanCountries.add(argentine);
         americanCountries.add(panama);
-        southAmerica.setContinents(americanCountries);
+        southAmerica.setCountries(americanCountries);
 
         Country poland = new Country("Poland", new BigDecimal("38386000"));
         Country germany = new Country("Germany", new BigDecimal("83166711"));
@@ -53,7 +53,7 @@ public class WorldTestSuite {
         europeanCountries.add(poland);
         europeanCountries.add(germany);
         europeanCountries.add(portugal);
-        europe.setContinents(europeanCountries);
+        europe.setCountries(europeanCountries);
 
         Country china = new Country("China", new BigDecimal("1400050000"));
         Country russia = new Country("Russia", new BigDecimal("146748590"));
@@ -63,7 +63,7 @@ public class WorldTestSuite {
         asianCountries.add(china);
         asianCountries.add(russia);
         asianCountries.add(indonesia);
-        asia.setContinents(asianCountries);
+        asia.setCountries(asianCountries);
 
         //When
         System.out.println("People from all of this countries: " + world.getPeopleQuantity());
