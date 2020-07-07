@@ -12,7 +12,6 @@ public interface ArrayOperations {
     static double getAverage(int[] numbers) {
         IntStream.range(0, numbers.length)
                 .forEach(number -> System.out.println(numbers[number]));
-        IntStream.range(0, numbers.length);
         OptionalDouble averageNumber = IntStream.range(0,numbers.length)
         .map(number -> numbers[number])
         .average();
