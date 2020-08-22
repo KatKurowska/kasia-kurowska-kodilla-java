@@ -23,6 +23,9 @@ public class FirstChallenge {
         }
         catch(ArithmeticException arithmetical){
             System.out.println("Dividing by 0 is not possible. (" + arithmetical +")");}
-        finally {System.out.println("Dividing attempt completed.");}
+        finally {System.out.println("Dividing attempt completed.\n");}
+
+        ExceptionHandling exceptionHandling = new ExceptionHandling();
+        exceptionHandling.processSecondChallenge();
     }
 }
