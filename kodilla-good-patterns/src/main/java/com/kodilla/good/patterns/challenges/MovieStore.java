@@ -29,7 +29,7 @@ public class MovieStore {
     public static void main(String[] args) {
 
         MovieStore movieStore = new MovieStore();
-        String moviesSeparatedWithMark = movieStore.getMovies().values().stream().flatMap(Movies ->Movies.stream())
+        String moviesSeparatedWithMark = movieStore.getMovies().values().stream().flatMap(movies ->movies.stream())
                 .collect(Collectors.joining("!"));
 
         System.out.println(moviesSeparatedWithMark);
