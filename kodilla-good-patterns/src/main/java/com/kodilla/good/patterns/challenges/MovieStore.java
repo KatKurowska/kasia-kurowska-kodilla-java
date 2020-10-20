@@ -25,6 +25,7 @@ public class MovieStore {
 
         return booksTitlesWithTranslations;
     }
+
     
     public static void main(String[] args) {
 
