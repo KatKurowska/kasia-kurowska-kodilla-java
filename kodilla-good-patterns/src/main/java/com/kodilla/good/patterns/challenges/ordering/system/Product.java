@@ -1,6 +1,7 @@
 package com.kodilla.good.patterns.challenges.ordering.system;
 
 public class Product {
+
     private String name;
     private double price;
     private String company;

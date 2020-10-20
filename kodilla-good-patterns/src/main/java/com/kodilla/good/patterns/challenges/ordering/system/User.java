@@ -1,10 +1,11 @@
 package com.kodilla.good.patterns.challenges.ordering.system;
 
 public class User {
-    String number;
-    String name;
-    String surname;
-    String email;
+
+    private String number;
+    private String name;
+    private String surname;
+    private String email;
 
     public User(String number, String name, String surname, String email) {
         this.number = number;
