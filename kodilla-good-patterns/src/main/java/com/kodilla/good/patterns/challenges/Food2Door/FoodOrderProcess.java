@@ -6,19 +6,28 @@ import java.util.List;
 import java.util.Optional;
 
 public class FoodOrderProcess {
-    List<ProcessingTemplate> producers = new ArrayList<>();
+    List<AbstractSupplier> producers = new ArrayList<>();
 
     void processOrder(OrderData orderData) {
-        initializeProducers(orderData);
-        Optional<ProcessingTemplate> orderProcessing = producers.stream().filter(ProcessingTemplate::process).findFirst();
-        if (orderProcessing.isPresent()) {
+        initializeProducers();
+        String supplierName = orderData.getProducerName();
+        Optional<AbstractSupplier> orderProcessing =
+                producers.stream()
+                        .filter(x -> x.isThisSupplier(supplierName))
+                        .findFirst();
+
+        if (orderProcessing.isPresent() && processOrderDate(orderData, orderProcessing.get())) {
             System.out.println(orderData.getProducerName() + ": SUCCESS - order is processed.");
         } else {
             System.out.println(orderData.getProducerName() + ": FAIL - order is not processed.");
         }
     }
 
-    private void initializeProducers(OrderData orderData){
-            producers = Arrays.asList(new ExtraFoodShop(orderData), new HealthyShop(orderData), new GlutenFreeShop(orderData));
+    private boolean processOrderDate(OrderData orderData, AbstractSupplier orderProcessing) {
+        return orderProcessing.process(orderData);
+    }
+
+    private void initializeProducers() {
+        producers = Arrays.asList(new ExtraFoodShop(), new HealthyShop(), new GlutenFreeShop());
     }
 }
