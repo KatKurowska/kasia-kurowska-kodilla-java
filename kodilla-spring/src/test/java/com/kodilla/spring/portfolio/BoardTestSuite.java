@@ -13,26 +13,26 @@ public class BoardTestSuite {
 
     @Before
     public void init() {
-        context = new AnnotationConfigApplicationContext(Board.class, BoardConfig.class);
+        context = new AnnotationConfigApplicationContext( Board.class,BoardConfig.class);
     }
 
     @Test
     public void testTaskAdd() {
-        TaskList todo = (TaskList) context.getBean("todo");
+        TaskList todo = context.getBean("todo", TaskList.class);
         List<String> todoTasks = todo.getTasks();
         todoTasks.add("todo task");
-        todo = (TaskList) context.getBean("todo");
+        todo = context.getBean("todo", TaskList.class);
         Assert.assertEquals("todo task", todo.getTasks().get(0));
 
-        TaskList inProgress = (TaskList) context.getBean("in progress");
+        TaskList inProgress = context.getBean("in progress", TaskList.class);
         List<String> inProgressTasks = inProgress.getTasks();
         inProgressTasks.add("in progress task");
         Assert.assertEquals("in progress task", inProgress.getTasks().get(0));
 
-        TaskList done = (TaskList) context.getBean("done");
+        TaskList done = context.getBean("done", TaskList.class);
         List<String> doneTasks = done.getTasks();
         doneTasks.add("done task");
-        done = (TaskList) context.getBean("done");
+        done = context.getBean("done", TaskList.class);
         Assert.assertEquals("done task", done.getTasks().get(0));
     }
 
