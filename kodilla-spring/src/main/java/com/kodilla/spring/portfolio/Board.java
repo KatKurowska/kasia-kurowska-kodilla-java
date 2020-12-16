@@ -26,6 +26,6 @@ public class Board {
         return done;
     }
 
-    public Board() {
+    public Board(TaskList todo, TaskList inProgress, TaskList done) {
     }
 }

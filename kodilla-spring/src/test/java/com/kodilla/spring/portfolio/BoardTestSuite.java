@@ -13,7 +13,7 @@ public class BoardTestSuite {
 
     @Before
     public void init() {
-        context = new AnnotationConfigApplicationContext( Board.class,BoardConfig.class);
+        context = new AnnotationConfigApplicationContext(BoardConfig.class);
     }
 
     @Test
