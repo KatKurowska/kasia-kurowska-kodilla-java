@@ -1,18 +1,12 @@
 package com.kodilla.spring.portfolio;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
 public class Board {
-    @Qualifier("todo")
-    @Autowired
-    private TaskList todo;
-    @Qualifier("in progress")
-    @Autowired
-    private TaskList inProgress;
-    @Qualifier("done")
-    @Autowired
-    private TaskList done;
+
+    private final TaskList todo;
+
+    private final TaskList inProgress;
+
+    private final TaskList done;
 
     public TaskList getTodo() {
         return todo;
@@ -26,6 +20,9 @@ public class Board {
         return done;
     }
 
-    public Board(TaskList todo, TaskList inProgress, TaskList done) {
+    public Board( TaskList todo, TaskList inProgress, TaskList done) {
+        this.todo = todo;
+        this.inProgress = inProgress;
+        this.done = done;
     }
 }
