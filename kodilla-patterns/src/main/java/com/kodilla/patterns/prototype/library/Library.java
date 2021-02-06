@@ -42,8 +42,11 @@ public class Library extends Prototype {
         Library clonedLibrary = (Library) super.clone();
         clonedLibrary.books = new HashSet<>();
         for (Book theBook : books) {
-            clonedLibrary.books.add(theBook);
+            Book clonedBook = new Book(theBook.title, theBook.author, theBook.publicationDate);
+            clonedLibrary.books.add(clonedBook);
         }
         return clonedLibrary;
+
     }
 }
+
