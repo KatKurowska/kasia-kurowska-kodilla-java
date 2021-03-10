@@ -41,8 +41,8 @@ public class InvoiceDaoTestSuite {
 
         item1.setProduct(product1);
         item1.setInvoice(invoice);
-        item1.setProduct(product2);
-        item1.setInvoice(invoice);
+        item2.setProduct(product2);
+        item2.setInvoice(invoice);
 
         product1.getItems().add(item1);
         invoice.getItems().add(item1);
@@ -64,5 +64,10 @@ public class InvoiceDaoTestSuite {
         Assert.assertNotEquals(0, idForInvoice);
         Assert.assertNotEquals(0, idForProduct);
         Assert.assertNotEquals(0, idForItem);
+
+    //Clean-up
+        itemDao.deleteAll();
+        productDao.deleteAll();
+        invoiceDao.deleteAll();
     }
 }
