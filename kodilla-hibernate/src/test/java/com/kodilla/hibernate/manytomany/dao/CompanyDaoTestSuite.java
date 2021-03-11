@@ -9,12 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
 
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany(){
@@ -57,8 +61,47 @@ public class CompanyDaoTestSuite {
             companyDao.deleteById(softwareMachineId);
             companyDao.deleteById(dataMaestersId);
             companyDao.deleteById(greyMatterId);
+            employeeDao.deleteAll();
         } catch (Exception e) {
             //do nothing
         }
+    }
+
+    @Test
+    public void testNameQueries(){
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        Employee jenniferSmith = new Employee("Jennifer","Smith");
+
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
+        softwareMachine.getEmployees().add(johnSmith);
+        dataMaesters.getEmployees().add(stephanieClarckson);
+        greyMatter.getEmployees().add(lindaKovalsky);
+        dataMaesters.getEmployees().add(jenniferSmith);
+
+
+        johnSmith.getCompanies().add(softwareMachine);
+        stephanieClarckson.getCompanies().add(dataMaesters);
+        jenniferSmith.getCompanies().add(dataMaesters);
+        lindaKovalsky.getCompanies().add(greyMatter);
+
+        //When
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+        List<Employee> employeeSurname = employeeDao.retrieveByLastname("Smith");
+        List<Company> companyNameBeginning = companyDao.retrieveByFirstThreeLetters("Sof");
+
+        //Then
+        Assert.assertEquals(2, employeeSurname.size());
+        Assert.assertEquals(1, companyNameBeginning.size());
+
+        //Clean-up
+        companyDao.deleteAll();
+        employeeDao.deleteAll();
     }
 }
